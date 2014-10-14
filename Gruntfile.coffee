@@ -58,21 +58,15 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON "package.json"
 
-    # concat:
-    #   dist:
-    #     src: [ 'public/basket/vendor.js', 'public/basket/basket.js' ]
-    #     dest: 'public/basket/widget.js'
-
     brunch:
-      # serve:
-      #   action: 'serve'
-      #   port: 8888
-      #   async: false
+      serve:
+        action: 'serve'
+        port: 8888
+        async: false
 
 
-      # watch:
-      #   action: 'watch'
-
+      watch:
+        action: 'watch'
 
       build:
         action: 'build'
@@ -80,15 +74,15 @@ module.exports = (grunt) ->
 
     rsync:
       options:
-        exclude: [ "*.map" ]  #, "basket.js", "vendor.js" ]
+        exclude: [ "*.map" ]
         args: [ "--verbose" ]
         recursive: true
 
-      # overlord:
-      #   options:
-      #     src: "public/basket/*"
-      #     dest: "/var/www/smartomato-basket-widget"
-      #     host: "deployer@overlord.whymy.ru"
+      overlord:
+        options:
+          src: "public/*"
+          dest: "/var/www/smartomato-partner"
+          host: "deployer@overlord.whymy.ru"
 
       production:
         options:
@@ -97,13 +91,13 @@ module.exports = (grunt) ->
           host: "deployer@smartomato-web.whymy.ru"
 
   grunt.loadNpmTasks 'grunt-rsync'
-  grunt.loadNpmTasks 'grunt-contrib-concat'
 
-  # grunt.registerTask "serve", [ "brunch:serve" ]
+  grunt.registerTask "serve", [ "brunch:serve" ]
   grunt.registerTask "build", [ "brunch:build" ]
-  # grunt.registerTask "w", [ "brunch:watch" ]
+  grunt.registerTask "w", [ "brunch:watch" ]
 
-  # grunt.registerTask "deploy", [ "build", "concat:dist", "rsync:overlord"]
+  grunt.registerTask "deploy:overlord",   [ "build", "rsync:overlord"]
   grunt.registerTask "deploy:production", [ "build", "rsync:production"]
 
   grunt.registerTask "default", [ "serve"]
+  grunt.registerTask "deploy",  ["deploy:overlord"]

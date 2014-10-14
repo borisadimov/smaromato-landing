@@ -1,10 +1,10 @@
 {
-  "name": "brunch-for-homeless",
+  "name": "partner-landing",
   "version": "0.0.0",
   "authors": [
-    "molefrog <molefrog@gmail.com>"
+    "boris@adimov.ru"
   ],
-  "description": "Brunch skeleton for homeless guys",
+  "description": "Landing page for Smartomato partnership campaign",
   "license": "MIT",
   "private": true,
   "ignore": [

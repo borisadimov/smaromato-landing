@@ -4,12 +4,29 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:300&subset=latin,cyrillic)
 
 
+
 @font-face
   font-family: 'fontello'
   src: url('/font/fontello.eot')
   src: url('/font/fontello.eot#iefix') format('embedded-opentype'), url('/font/fontello.woff') format('woff'), url('/font/fontello.ttf') format('truetype'), url('/font/fontello.svg#fontello') format('svg')
   font-weight: normal
   font-style: normal
+
+$break: 560px
+
+
+@mixin mobile
+  @media only screen and (max-width: $break - 1)
+    @content
+  +iphone4
+    @content
+  +iphone5
+    @content
+  +ipad(portrait)
+    @content
+
+
+
 
 
 .rest_icon:after, .staff_icon:after
@@ -113,9 +130,23 @@ section
     transform: translateX(-50%)
     -webkit-transform: translateX(-50%)
     z-index: 0
+    +mobile
+      display: none
+
+  img.illustration_small
+    display: none
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    -webkit-transform: translateX(-50%)
+    z-index: 0
+    +mobile
+      display: inline-block
+
+
   &:nth-child(1)
     height: 681px
-    img.illustration
+    img.illustration, .illustration_small
       top: 0
       height: 681px
 
@@ -128,13 +159,13 @@ section
     .counter
       color: #fff
       margin-top: 330px
-    .illustration
+    .illustration, .illustration_small
       bottom: 0
       height: 664px
   &:nth-child(4)
     height: 1115px
     background: #fffbe9
-    .illustration
+    .illustration, .illustration_small
       bottom: 0
       height: 693px
     .counter
@@ -153,7 +184,7 @@ section
       text-align: left
       padding-left: 18px
       padding-top: 5px
-    .illustration
+    .illustration, .illustration_small
       bottom: -10px
       height: 408px
     h2
@@ -167,7 +198,7 @@ section
     background: #50aa90
 
 
-    .illustration
+    .illustration, .illustration_small
       top: 140px
       height: 434px
     p.dynamic
